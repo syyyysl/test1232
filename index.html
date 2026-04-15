@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Whisper House</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="overlay" class="overlay visible">
+    <div class="panel">
+      <p class="eyebrow">Домашний прототип</p>
+      <h1 id="overlayTitle">Whisper House</h1>
+      <p id="overlayLead" class="lead">
+        Исследуй дом, находи новые комнаты и разговаривай с Леей, цифровой хозяйкой этого места.
+        Сейчас это мягкий романтический прототип: прогулка, атмосфера и свободный текстовый диалог.
+      </p>
+      <ul class="intro-list">
+        <li><strong>WASD</strong> или стрелки: движение</li>
+        <li><strong>Мышь</strong>: осматриваться</li>
+        <li><strong>E</strong>: открыть диалог рядом с Леей</li>
+        <li><strong>Esc</strong>: пауза или выход из диалога</li>
+      </ul>
+      <p class="mobile-note">
+        На телефоне появятся экранные кнопки движения и поворота.
+      </p>
+      <button id="startButton" type="button">Войти в дом</button>
+    </div>
+  </div>
+
+  <div id="hud" class="hud">
+    <div class="hud-card">
+      <span>Комната</span>
+      <strong id="roomText">Фойе</strong>
+    </div>
+    <div class="hud-card">
+      <span>Настроение Леи</span>
+      <strong id="moodText">Спокойное</strong>
+    </div>
+    <div class="hud-card">
+      <span>Связь</span>
+      <strong id="trustText">24%</strong>
+    </div>
+  </div>
+
+  <div id="prompt" class="prompt" aria-live="polite">
+    <span id="promptLabel">Подойди ближе к Лее и нажми E</span>
+    <button id="interactButton" class="ghost-button" type="button">Поговорить</button>
+  </div>
+
+  <div class="crosshair" aria-hidden="true"></div>
+
+  <section id="chatShell" class="chat-shell" aria-label="Диалог с Леей">
+    <div class="chat-head">
+      <div>
+        <p class="chat-kicker">Собеседница дома</p>
+        <h2>Лея</h2>
+      </div>
+      <button id="closeChatButton" class="ghost-button" type="button">К прогулке</button>
+    </div>
+
+    <div id="chatLog" class="chat-log" aria-live="polite"></div>
+    <div id="chipRow" class="chip-row"></div>
+
+    <form id="chatForm" class="chat-form">
+      <input
+        id="chatInput"
+        type="text"
+        maxlength="220"
+        autocomplete="off"
+        placeholder="Подойди ближе к Лее, чтобы написать"
+      >
+      <button id="sendButton" type="submit">Отправить</button>
+    </form>
+  </section>
+
+  <button id="chatToggle" class="chat-toggle" type="button">Диалог</button>
+
+  <div id="touchControls" class="touch-controls" aria-hidden="true">
+    <div class="touch-pad">
+      <button class="touch-btn" data-key="KeyW" type="button">▲</button>
+      <div class="touch-row">
+        <button class="touch-btn" data-key="KeyA" type="button">◀</button>
+        <button class="touch-btn" data-key="KeyS" type="button">▼</button>
+        <button class="touch-btn" data-key="KeyD" type="button">▶</button>
+      </div>
+    </div>
+
+    <div class="touch-pad touch-look">
+      <div class="touch-row">
+        <button class="touch-btn" data-look="left" type="button">⟲</button>
+        <button class="touch-btn" data-look="right" type="button">⟳</button>
+      </div>
+      <button id="touchInteract" class="touch-action" type="button">Поговорить</button>
+    </div>
+  </div>
+
+  <canvas id="game"></canvas>
+
+  <script src="https://unpkg.com/three@0.165.0/build/three.min.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
